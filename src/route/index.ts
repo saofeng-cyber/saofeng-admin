@@ -4,13 +4,70 @@ import { ElMessage } from "element-plus";
 import NProgress from "@/utils/progress"
 const routes: Array<RouteRecordRaw> = [
     {
-        path:"/",
-        name:"/",
-        component:()=>import('@/views/layout/Main.vue'),
+        path: "/",
+        name: "首页",
+        redirect: "/analyis",
+        component: () => import('@/views/layout/Main.vue'),
         meta: {
             title: "主页",
             requireAuthorization: true
-        }
+        },
+        children: [
+            {
+                path: "/analyis",
+                name: "分析页",
+                component: () => import("@/views/system/Analysis.vue"),
+                meta: {
+                    title: "分析页",
+                    requireAuthorization: true
+                },
+            },
+            {
+                path: "/platform",
+                name: "工作台",
+                component: () => import("@/views/system/Platform.vue"),
+                meta: {
+                    title: "工作台",
+                    requireAuthorization: true
+                },
+            },
+            {
+                path: "/error",
+                name: "错误页面",
+                component: () => import('@/views/error/Mistake.vue'),
+                meta: {
+                    title: "错误页面",
+                    requireAuthorization: true
+                },
+            },
+            {
+                path: "/authority",
+                name: "权限管理",
+                component: () => import("@/views/system/Authority.vue"),
+                meta: {
+                    title: "权限管理",
+                    requireAuthorization: true
+                },
+            },
+            {
+                path: "/system",
+                name: "系统管理",
+                component: () => import("@/views/system/System.vue"),
+                meta: {
+                    title: "系统管理",
+                    requireAuthorization: true
+                },
+            },
+            {
+                path: "/about",
+                name: "关于页面",
+                component: () => import("@/views/system/About.vue"),
+                meta: {
+                    title: "关于页面",
+                    requireAuthorization: true
+                },
+            },
+        ]
     },
     {
         path: "/login",
@@ -21,6 +78,7 @@ const routes: Array<RouteRecordRaw> = [
             requireAuthorization: false
         }
     },
+
     {
         path: "/:patchMatch(.*)*",
         name: "error",

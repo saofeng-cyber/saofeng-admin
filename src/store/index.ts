@@ -6,7 +6,7 @@ const UseSession = defineStore(StoreName.MAIN, {
     state: () => {
         return {
             session: window.localStorage.getItem("token"),
-            name: "saofeng"
+            is_show: false
         }
     },
     getters: {
@@ -16,6 +16,9 @@ const UseSession = defineStore(StoreName.MAIN, {
         getSession() { this.session = window.localStorage.getItem("token") },
         setSession(password: string) {
             window.localStorage.setItem("token", password)
+        },
+        setShow() {
+            this.is_show = !this.is_show
         }
     }
 })
