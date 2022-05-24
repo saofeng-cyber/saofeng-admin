@@ -11,10 +11,19 @@ const password = ref("");
 const userouter: Router = useRouter();
 const login = () => {
   axios
-    .post("http://localhost:3000/api/admin/login", {
-      username: username.value,
-      password: password.value,
-    })
+    .post(
+      "http://localhost:3000/api/admin/login",
+      {
+        username: username.value,
+        password: password.value,
+      },
+      {
+        headers: {
+          Authorization:
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTQwMTIyOTAsInVzZXJuYW1lIjoic2FvZmVuZzY2NiJ9.TNceimTITEa9W_eew_qtxO6t7r8gQANY3FDLsSK6UBI",
+        },
+      }
+    )
     .then((res) => {
       console.log(res);
       if (res.data.success === "true") {
@@ -24,7 +33,7 @@ const login = () => {
           type: "success",
         });
         useSession.setSession(res.data.userInfo.password);
-        userouter.push({ name: "/" });
+        userouter.push({ path: "/" });
       } else {
         ElMessage({
           message: "登陆失败",

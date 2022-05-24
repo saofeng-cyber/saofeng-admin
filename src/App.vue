@@ -4,4 +4,5 @@
   <router-view />
 </template>
 
-<style></style>
+<style lang="scss">
+</style>
