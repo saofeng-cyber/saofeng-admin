@@ -10,6 +10,7 @@ import {
 import {
   Document,
   Stopwatch,
+  EditPen,
   Setting,
   Finished,
   Monitor,
@@ -30,6 +31,14 @@ const useroute = useRoute();
     :collapse="is_show"
     router
   >
+    <el-menu-item>
+      <el-icon :size="32" style="vertical-align: middle"
+        ><EditPen color="#C396ED"
+      /></el-icon>
+      <template #title
+        ><h3 style="color: #C396ED; margin: 0 5px">管理系统</h3></template
+      >
+    </el-menu-item>
     <el-sub-menu index="/">
       <template #title>
         <el-icon><Stopwatch /></el-icon>

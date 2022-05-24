@@ -20,7 +20,7 @@ const toggleDark = useToggle(isDark);
 const isFull = () => {
   if (screenfull.isEnabled) {
     screenfull.toggle();
-  } 
+  }
 };
 // defineProps<{ msg: string }>();
 const userSession = UseSession();
@@ -137,6 +137,7 @@ console.log(router);
 </template>
 <style scoped lang="scss">
 .header {
+  width: 100%;
   height: 56px;
   display: flex;
   align-items: center;
@@ -144,6 +145,7 @@ console.log(router);
   .header-left {
     display: flex;
     align-items: center;
+    padding-left: 20px;
     flex: 1 1 0%;
     .el-breadcrumb {
       display: flex;

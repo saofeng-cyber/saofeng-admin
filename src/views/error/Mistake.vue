@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 const userouter = useRouter();
 const back = () => {
-  userouter.go(-1);
+  userouter.push('/');
 };
 </script>
 

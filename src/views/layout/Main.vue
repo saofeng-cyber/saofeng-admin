@@ -16,6 +16,9 @@ import Header from "@/views/home/Header.vue";
 </template>
 <style scoped lang="scss">
 .common-layout {
+  .el-header {
+    padding: 0;
+  }
   .aside-container {
     height: 100vh;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
