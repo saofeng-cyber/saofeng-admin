@@ -1,47 +1,50 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { ElButton, ElMessage } from "element-plus";
-import axios from "axios";
 import { UseSession } from "../store";
 import { Router, useRouter } from "vue-router";
+import { login } from "@/api/api";
 import "@/style/login/login.scss";
 const useSession = UseSession();
-const username = ref("");
-const password = ref("");
+const params = reactive({
+  username:"",
+  password:""
+})
 const userouter: Router = useRouter();
-const login = () => {
-  axios
-    .post(
-      "http://localhost:3000/api/admin/login",
-      {
-        username: username.value,
-        password: password.value,
-      },
-      {
-        headers: {
-          Authorization:
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTQwMTIyOTAsInVzZXJuYW1lIjoic2FvZmVuZzY2NiJ9.TNceimTITEa9W_eew_qtxO6t7r8gQANY3FDLsSK6UBI",
-        },
-      }
-    )
-    .then((res) => {
-      console.log(res);
-      if (res.data.success === "true") {
-        ElMessage({
-          message: "登陆成功",
-          showClose: true,
-          type: "success",
-        });
-        useSession.setSession(res.data.userInfo.password);
-        userouter.push({ path: "/" });
-      } else {
-        ElMessage({
-          message: "登陆失败",
-          type: "warning",
-          showClose: true,
-        });
-      }
-    });
+const loginPAge = () => {
+  login(params)
+  // axios
+  //   .post(
+  //     "http://localhost:3000/api/admin/login",
+  //     {
+  //       username: username.value,
+  //       password: password.value,
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization:
+  //           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTM1NzcxOTgsInV1aWQiOjEwLCJ1c2VybmFtZSI6InNhb2Zlbmc2NjYifQ.grJ7kfgroneawaKkXfTdgYW6CjyD4-pBMmpQYSPlOXo",
+  //       },
+  //     }
+  //   )
+  //   .then((res) => {
+  //     console.log(res);
+  //     if (res.data.success === "true") {
+  //       ElMessage({
+  //         message: "登陆成功",
+  //         showClose: true,
+  //         type: "success",
+  //       });
+  //       useSession.setSession(res.data.userInfo.password);
+  //       userouter.push({ path: "/" });
+  //     } else {
+  //       ElMessage({
+  //         message: "登陆失败",
+  //         type: "warning",
+  //         showClose: true,
+  //       });
+  //     }
+  //   });
 };
 </script>
 <template>
@@ -58,7 +61,7 @@ const login = () => {
         type="username"
         name="username"
         id="user"
-        v-model="username"
+        v-model="params.username"
         placeholder="请输入用户名"
       />
       <input
@@ -66,7 +69,7 @@ const login = () => {
         name="password"
         id="pwd"
         placeholder="请输入密码"
-        v-model="password"
+        v-model="params.password"
       />
       <!-- <div class="checkCode">
         <input type="text" name="yzm" id="yzm" maxlength="6" />
@@ -79,7 +82,7 @@ const login = () => {
           height="100%"
         />
       </div> -->
-      <el-button class="btn" color="#547da9" size="default" @click="login"
+      <el-button class="btn" color="#547da9" size="default" @click="loginPAge"
         >LOGIN</el-button
       >
     </div>
