@@ -17,9 +17,9 @@ const initLinchart = () => {
 
 <template>
   <el-row :gutter="10">
-    <el-col :md="24" :lg="20" :xl="16">
-      <div class="sf-botom sf-flex">
-        <div class="left">
+    <el-col :md="24" :lg="16" :xl="16" class="sf-container">
+      <el-row :gutter="10">
+        <el-col :md="24" :lg="12" :xl="6">
           <h3 class="h3-text">Dashboard</h3>
           <p class="text-color">Overview Of Lasted Month</p>
           <h3 class="h3-text" style="padding-top: 36px">
@@ -37,35 +37,30 @@ const initLinchart = () => {
             @click="initLinchart"
             >Last Mouth Summary</el-button
           >
-        </div>
-        <div class="right">
-          <LineChartVue ref="linchartRef" style="width: 100%; height: 100%" />
-        </div>
-      </div>
+        </el-col>
+        <el-col :md="24" :lg="12" :xl="18">
+          <LineChartVue ref="linchartRef" style="height: 100%" />
+        </el-col>
+      </el-row>
     </el-col>
-    <el-col :md="24" :lg="4" :xl="8">
+    <el-col :md="24" :lg="8" :xl="8">
       <div class="sf-botom"></div>
     </el-col>
   </el-row>
 </template>
 
 <style scoped lang="scss">
+.sf-container,
 .sf-botom {
   background-color: #fff;
   margin-bottom: $sf-btom;
   height: $sf-height;
   padding: $sf-pd;
   border-radius: $sf-border-radius;
-  & .left {
-    width: 200px;
-    // background-color: cadetblue;
+  text-align: center;
     & .h3-text {
       font-size: $sf-font-size;
       font-weight: bold;
-    }
-  }
-  & .right {
-    width: 82%;
   }
 }
 </style>
