@@ -1,4 +1,3 @@
-import { App } from 'vue';
 import { defineStore } from 'pinia'
 import { StoreName } from './store-name';
 
@@ -22,4 +21,25 @@ const UseSession = defineStore(StoreName.MAIN, {
         }
     }
 })
-export { UseSession }
+
+const UseToken = defineStore(StoreName.TOKEN, {
+    state: () => {
+        return {
+            token: "token"
+        }
+    },
+    getters: {
+        getStoken: (state) => {
+            state.token = JSON.stringify(window.localStorage.getItem("token"))
+            return state.token
+        }
+    },
+    actions: {
+        setToken(token: string) {
+            window.localStorage.setItem("token", JSON.stringify(token));
+            this.token = token
+        }
+    }
+})
+const UserInfo = defineStore(StoreName.USERINFO, {})
+export { UseSession, UseToken, UserInfo }

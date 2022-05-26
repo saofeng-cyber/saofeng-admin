@@ -33,7 +33,7 @@ const expand = () => {
 };
 const router = useRoute();
 
-console.log(router);
+// console.log(router);
 </script>
 <template>
   <div class="header">
@@ -45,7 +45,7 @@ console.log(router);
         style="cursor: pointer; margin-right: 25px"
       >
         <Fold v-if="!is_show" />
-        <Expand v-if="is_show" />
+        <Expand v-else />
       </el-icon>
       <el-breadcrumb :separator-icon="Right">
         <el-breadcrumb-item v-for="(item, index) in router.matched" :key="index"
@@ -94,7 +94,7 @@ console.log(router);
       >
         <el-link
           :underline="false"
-          style="color: black;"
+          style="color: black"
           href="https://github.com/saofeng-cyber/saofeng-admin"
           ><div style="cursor: pointer; margin: 0 20px">
             <svg
@@ -148,7 +148,7 @@ console.log(router);
   height: 56px;
   display: flex;
   align-items: center;
-  box-shadow: 0 1px 2px #00152914;
+  box-shadow: 0 1px 2px #ffffff14;
   .header-left {
     display: flex;
     align-items: center;

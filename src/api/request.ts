@@ -1,5 +1,6 @@
 import axios from "axios"
 import { AxiosInstanceConfig } from "./axios"
+import { UseToken } from "../store";
 const config: AxiosInstanceConfig = {
     baseURL: "http://localhost:3000/api/admin",
     timeout: 5000,
@@ -9,8 +10,9 @@ const instance = axios.create(config)
 // 添加请求拦截器
 instance.interceptors.request.use((config) => {
     // 在发送请求之前做些什么
-    console.log(config.headers);
-    
+    config.headers = {
+        Authorization: UseToken().token
+    }
     return config;
 }, function (error) {
     // 对请求错误做些什么

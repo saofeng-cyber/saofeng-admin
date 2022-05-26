@@ -1,50 +1,38 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { ElButton, ElMessage } from "element-plus";
-import { UseSession } from "../store";
+import { UseToken } from "../store";
 import { Router, useRouter } from "vue-router";
 import { login } from "@/api/api";
 import "@/style/login/login.scss";
-const useSession = UseSession();
+const useToken = UseToken();
 const params = reactive({
-  username:"",
-  password:""
-})
+  username: "",
+  password: "",
+});
 const userouter: Router = useRouter();
 const loginPAge = () => {
   login(params)
-  // axios
-  //   .post(
-  //     "http://localhost:3000/api/admin/login",
-  //     {
-  //       username: username.value,
-  //       password: password.value,
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization:
-  //           "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTM1NzcxOTgsInV1aWQiOjEwLCJ1c2VybmFtZSI6InNhb2Zlbmc2NjYifQ.grJ7kfgroneawaKkXfTdgYW6CjyD4-pBMmpQYSPlOXo",
-  //       },
-  //     }
-  //   )
-  //   .then((res) => {
-  //     console.log(res);
-  //     if (res.data.success === "true") {
-  //       ElMessage({
-  //         message: "登陆成功",
-  //         showClose: true,
-  //         type: "success",
-  //       });
-  //       useSession.setSession(res.data.userInfo.password);
-  //       userouter.push({ path: "/" });
-  //     } else {
-  //       ElMessage({
-  //         message: "登陆失败",
-  //         type: "warning",
-  //         showClose: true,
-  //       });
-  //     }
-  //   });
+    .then((res) => {
+      if (res.data.msg === "登录成功") {
+        useToken.setToken(res.data.userInfo.token);
+        console.log(useToken.token);
+        ElMessage({
+          message: res.data.msg,
+          type: "success",
+          showClose: true,
+        });
+        userouter.push({ name: "首页" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      ElMessage({
+        message: error.message,
+        type: "warning",
+        showClose: true,
+      });
+    });
 };
 </script>
 <template>
@@ -88,4 +76,6 @@ const loginPAge = () => {
     </div>
   </div>
 </template>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+// @import url("@/style/login/login.scss");
+</style>

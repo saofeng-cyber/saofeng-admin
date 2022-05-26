@@ -19,6 +19,25 @@ export interface AxiosInstanceConfig {
 }
 
 export interface LoginConfig {
-    username:string,
-    password:string
+    username: string,
+    password: string
+}
+
+export interface LoginResult {
+    config: any,
+    data: {
+        msg: string,
+        success: string,
+        userInfo: {
+            uid: number,
+            username: string,
+            password: string,
+            token: string,
+            salt: string,
+            createTime: string
+        }
+    },
+    headers: any,
+    status: number,
+    statusText?: String
 }

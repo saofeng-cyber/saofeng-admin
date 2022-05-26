@@ -99,7 +99,7 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title as string
     NProgress.start();
     if (to.meta.requireAuthorization) {
-        if (window.localStorage.getItem("token") != null) {
+        if (to.meta.requireAuthorization && window.localStorage.getItem("token")) {
             next()
         }
         else {

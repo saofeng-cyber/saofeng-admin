@@ -9,7 +9,7 @@ import Header from "@/views/home/Header.vue";
       <el-aside width="auto" class="aside-container"><Menu /></el-aside>
       <el-container>
         <el-header><Header /></el-header>
-        <el-main><router-view /></el-main>
+        <el-main style="background-color: #f6f9f8"><router-view /></el-main>
       </el-container>
     </el-container>
   </div>

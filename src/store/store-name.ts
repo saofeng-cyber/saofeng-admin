@@ -1,3 +1,5 @@
 export const enum StoreName {
-    MAIN = "sesssion"
+    MAIN = "sesssion",
+    TOKEN = "token",
+    USERINFO = 'userInfo'
 }

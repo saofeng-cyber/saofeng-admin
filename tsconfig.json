@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
+    "types": ["element-plus/global", "echarts/index"],
     "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"],

@@ -85,7 +85,7 @@ const useroute = useRoute();
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  height: 100vh;
+  height: 100%;
 }
 .el-menu {
   border: none;

@@ -1,6 +1,5 @@
 import { Alias, defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from "path"
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -13,7 +12,7 @@ const pathResolve = (dir: string): string => {
 const alias: Alias[] = [
   {
     find: "@",
-    replacement: pathResolve("/src")
+    replacement: pathResolve("src")
   }
 ]
 export default defineConfig({
@@ -26,9 +25,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),],
   resolve: {
-    alias: {
-      '@': '/src'
-    }
+    alias
   },
   server: {
     proxy: {
@@ -42,11 +39,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        /**如果引入多个文件，可以使用
-       * '@import "@/assets/scss/globalVariable1.scss";
-       * @import"@/assets/scss/globalVariable2.scss";'
-      **/
-        additionalData: '@import url("/src/style/scss/index.scss");',
+        additionalData: '@import url("/src/assets/style/scss/index.scss"); @import "@/assets/style/scss/var.scss";',
       }
     }
   },
